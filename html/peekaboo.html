@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<style>
+        
+        body { background-color:#d4cec2; }
+        
+        #manusc {
+            background-image: url('parchment.png');
+            position: absolute;
+            background-position: center;
+            height: 100%;
+            width:100%;
+            //align-content: center;
+        }
+        
+        div.image {
+            content:url("circ.png");
+        }
+        
+        #peeker {
+            border-radius: 50%;
+            -webkit-transition: -webkit-transform .4s ease-in-out;
+            transition:         transform .4s ease-in-out;
+            position:relative;
+            z-index: 50;
+            left:-150px;
+            top:150px;
+            float:left;
+            transform: rotate(15deg);
+            cursor: pointer;
+        }
+        #peeker:hover {
+          -webkit-transform: rotate(40deg);
+                  transform: rotate(40deg);
+        }
+        #arrow {
+            //max-height: 50px;
+            max-width: 3.6%;
+            height:auto;
+            width: auto;
+            transform: rotate(90deg);
+            float:right;
+            position:relative;
+            top: 50px;
+            right: 285px;
+        }
+        #wheel {
+            float:right;
+            height:auto;
+            width: auto;
+            z-index: 2;
+            max-width: 36%;
+            transition: 0.2s ease-in-out; 
+            position: relative;
+            z-index: 10;
+            top: 100px;
+            cursor: pointer;
+            right: 25px;
+        }
+        #wheel:hover {
+            -webkit-transform: rotate(15deg);
+            transform: rotate(15deg);
+            transition: all 0.4s ease-in-out; 
+        }
+        
+        #rainbow {
+            position: relative;
+            float:right;
+            height: auto;
+            width: auto;
+            max-width: 20%;
+            z-index: 0;
+            right: 90px;
+            top: 120px;
+        }
+        
+        #text, #textone, #texttwo, #textthree,#textfour,#textfive {
+            font-family: rotunda;
+            font-size: 3.5vw;
+            line-height: 45px;
+            height:auto;
+            width: auto;
+            position: relative;
+            top: 120px;
+            left: -50px;
+            transition: all 2s ease-in-out; 
+        }
+        #menubar {
+            position: absolute;
+            float: top;
+            left: 80px;
+            top: 40px;
+        }
+        #menuitem {
+            transition: all 0.6s ease-in-out;
+            font-family: rotunda;
+            font-size: 4vw;
+            position: relative;
+            float: top;
+            cursor: pointer;
+            z-index: 70;
+        }
+        #menuitem:hover {
+            color: #F00F0F;
+        }
+        
+             
+        #rabbit {
+            background-image: url("rabbits.png");
+            background-repeat: repeat;
+            visibility: hidden;
+            z-index: 1000;
+            -webkit-animation: snowerl 50s linear infinite;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index=1000;
+        }
+        #chicken {
+            background-image: url("dickrider.png");
+            background-repeat: repeat;
+            visibility: hidden;
+            -webkit-animation: snower 50s linear infinite;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index=1000;
+        }
+        
+        
+        .snowanim {
+            animation: snower 4s linear;
+            -webkit-animation: snower 4s linear;
+        }
+        
+        .spinanim {
+            animation: spinna 3s linear;
+        }
+        
+        @font-face { font-family: rotunda; src: url('a_dark_wedding__2007.ttf'); } 
+        @-webkit-keyframes fallingLeaves {
+            0% {opacity: 1;
+            -webkit-transform: translate(0, 0px) rotateZ(0deg);
+            }
+            75% {
+                opacity: 1;
+                -webkit-transform: translate(100px, 600px) rotateZ(270deg);
+            }
+            100% {
+                opacity: 0;
+                -webkit-transform: translate(150px, 800px) rotateZ(360deg);
+            }
+        }
+        @-webkit-keyframes spinna {
+            from { -webkit-transform: rotate(40deg); }
+            to { -webkit-transform: rotate(375deg); }
+        }
+        @-webkit-keyframes snower {
+            0% {background-position: 0px 0px; 
+            opacity: 1;}
+            100% {background-position: 10000px 0px;
+            opacity: 0.5;}
+        }
+        @-webkit-keyframes snowerl {
+            0% {background-position: 0px 0px; 
+            opacity: 1;}
+            100% {background-position: -10000px 0px;
+            opacity: 0.5;}
+        }
+    </style>
+    <script>
+        function peek() {
+            var element = document.getElementById('peeker');
+            element.classList.add('spinanim');
+            //document.getElementById('chicken').classList.add('snowanim');
+            document.getElementById('chicken').style.visibility = "visible";
+            setTimeout(function(){document.getElementById('peeker').classList.remove('spinanim');
+            document.getElementById('chicken').classList.remove('snowanim');
+            document.getElementById('chicken').style.visibility = "hidden";
+                                  
+                                 }, 4000);
+            //element.style.webkitAnimationName = 'spinna';
+        }
+        
+                
+                
+                
+    var curdeg = 3;
+    var rotbool = 0;
+    function rotate(){ 
+        var img=document.getElementById('wheel');
+        curdeg += 30;
+        curdegstr = curdeg.toString();
+        img.setAttribute('style','transform:rotate(' + curdegstr + 'deg)');
+        changedeg();
+    }
+    function getRandomColor() {
+      var letters = '0123456789ABCDEF';
+      var color = '#';
+      for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+                
+    function yeet() {
+        document.getElementById('rabbit').style.visibility = "visible";
+        setTimeout(function(){
+            document.getElementById('rabbit').style.visibility = "hidden";
+                                 }, 4000);
+    }
+    function changedeg() {
+        if ((curdeg - 3) % 120 == 0) {
+            document.getElementById("text").style.color = "#000000";
+            document.getElementById("textone").style.color = "#000000";
+            document.getElementById("texttwo").style.color = "#000000";
+            document.getElementById("textthree").style.color = "#000000";
+            document.getElementById("textfour").style.color = "#000000";;
+            document.getElementById("textfive").style.color = "#000000";;
+        }
+        else {
+            document.getElementById("text").style.color = getRandomColor();
+            document.getElementById("textone").style.color = getRandomColor();
+            document.getElementById("texttwo").style.color = getRandomColor();
+            document.getElementById("textthree").style.color = getRandomColor();
+            document.getElementById("textfour").style.color = getRandomColor();
+            document.getElementById("textfive").style.color = getRandomColor()
+        }
+    }
+            
+    function getRandomArbitrary(min, max) {
+        return Math.random() * (max - min) + min;
+    }
+    function gradrot(){
+        var img=document.getElementById('wheel');
+        curdeg += 10;
+        curdegstr = curdeg.toString();
+        img.setAttribute('style','transform:rotate(' + curdegstr + 'deg)');
+    }
+    function mouseout() {
+        var img=document.getElementById('wheel');
+        curdeg -= 10;
+        curdegstr = curdeg.toString();
+        img.setAttribute('style','transform:rotate(' + curdegstr + 'deg)');
+    }
+    function closeeye() {
+        var element =document.getElementById('rainbow');
+        element.setAttribute('src', 'rainbowclose.png');
+        setTimeout(function(){
+            element.setAttribute('src', 'rainbow.png');
+                                 }, 1000);
+    }
+    </script>
+
+    
+</head>
+    <body>
+        <div id="manusc">
+            
+            <div id="menubar">
+                <a id="menuitem">About&emsp;&emsp;</a> 
+                <a id="menuitem" onclick="yeet()">Yeet&emsp;&emsp;</a>
+                <a id="menuitem" href="https://github.com/sollozzo2" style="color: #000000; text-decoration: none;">Back to Github</a>
+            </div>
+            <img src="peekaboo.png" id="peeker" onclick="peek()">
+            <img src="arrow.png" id="arrow">
+            <img src="circ.png" id="wheel" onclick="rotate()">
+            <div>
+                
+                <a id="text">Click the dude on the left for a surprise. </a>
+                <a id="textone">Spin the wheel on the right to change text colors randomly. </a>
+                <a id="texttwo">Click Yeet for another pleasant surprise. </a>
+                <a id="textthree"> Sic dum civitas manebit clarum lumen hic lucebit
+                    luce angulos replebit fugerit obscuritas
+                </a>
+                <span id="chicken"></span>
+                <span id="rabbit"></span>
+                <img src="rainbow.png" id="rainbow" onmouseover="closeeye();">
+            </div>
+        </div>
+    </body>
+</html>
+
