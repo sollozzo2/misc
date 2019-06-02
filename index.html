@@ -265,26 +265,41 @@
         <div id="manusc">
             
             <div id="menubar">
-                <a id="menuitem">About&emsp;&emsp;</a> 
+                <a id="menuitem" onclick="about()">About&emsp;&emsp;</a> 
                 <a id="menuitem" onclick="yeet()">Yeet&emsp;&emsp;</a>
                 <a id="menuitem" href="https://github.com/sollozzo2" style="color: #000000; text-decoration: none;">Back to Github</a>
             </div>
             <img src="html/peekaboo.png" id="peeker" onclick="peek()">
             <img src="html/arrow.png" id="arrow">
             <img src="html/circ.png" id="wheel" onclick="rotate()">
-            <div>
+            <div id="intro">
                 
-                <a id="text">Click the dude on the left for a surprise. </a>
-                <a id="textone">Spin the wheel on the right to change text colors randomly. </a>
-                <a id="texttwo">Click Yeet for another pleasant surprise. </a>
-                <a id="textthree"> Sic dum civitas manebit clarum lumen hic lucebit
+                <span id="text">Click the dude on the left for a surprise. </span>
+                <span id="textone">Spin the wheel on the right to change text colors randomly. </span>
+                <span id="texttwo">Click Yeet for another pleasant surprise. </span>
+                <span id="textthree"> Sic dum civitas manebit clarum lumen hic lucebit
                     luce angulos replebit fugerit obscuritas
-                </a>
-                <span id="chicken"></span>
+                </span>
+            </div>
+		<span id="chicken"></span>
                 <span id="rabbit"></span>
                 <img src="html/rainbow.png" id="rainbow" onmouseover="closeeye();">
-            </div>
         </div>
+	<script>
+        var orig = document.getElementById("intro").innerHTML;
+        var state = 0;
+        function 
+		() {
+        if (state == 0) {
+            document.getElementById("intro").innerHTML = '<a id="textfour">Manuscript illuminators are masters at layout and design, but they only had pen and ink at the time. What if they knew CSS and Javascript as well -- what would their work look like then? This page is my jab at that concept.</a>';
+            state = 1;
+        }
+        else {
+            document.getElementById("intro").innerHTML = orig;
+            state = 0;
+        }
+    }	
+        </script>
     </body>
 </html>
 
