@@ -31,6 +31,8 @@
             float:left;
             transform: rotate(15deg);
             cursor: pointer;
+            -moz-user-select: none;
+            -webkit-user-select: none;
         }
         #peeker:hover {
           -webkit-transform: rotate(40deg);
@@ -46,6 +48,8 @@
             position:relative;
             top: 7%;
             right: 22%;
+            -moz-user-select: none;
+            -webkit-user-select: none;
         }
         #wheel {
             float:right;
@@ -59,6 +63,8 @@
             top: 16%;
             cursor: pointer;
             right: 2.5%;
+            -moz-user-select: none;
+            -webkit-user-select: none;
         }
         #wheel:hover {
             -webkit-transform: rotate(15deg);
@@ -75,6 +81,8 @@
             z-index: 0;
             right: 90px;
             top: 120px;
+            -moz-user-select: none;
+            -webkit-user-select: none;
         }
         
         #text, #textone, #texttwo, #textthree,#textfour,#textfive {
@@ -102,6 +110,11 @@
             float: top;
             cursor: pointer;
             z-index: 70;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select:none;
+            user-select:none;
+            -o-user-select:none;
         }
         #menuitem:hover {
             color: #F00F0F;
@@ -122,7 +135,7 @@
             z-index=1000;
         }
         #chicken {
-            background-image: url("html/rider.png");
+            background-image: url("html/rider1.png");
             background-repeat: repeat;
             visibility: hidden;
             -webkit-animation: snower 50s linear infinite;
